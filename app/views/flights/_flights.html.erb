@@ -1,0 +1,24 @@
+<% if @flights.any? %>
+<table>
+  <tr>
+    <th>Flight #</th>
+    <th>Departs</th>
+    <th>Arrives</th>
+    <th>Date and Time</th>
+    <th>Duration</th>
+    <th></th>
+  </tr>
+  <tbody>
+    <% @flights.each do |f| %>
+      <tr>
+      <td><%= f.id %></td>
+      <td><%= f.departure_airport.code %></td>
+      <td><%= f.arrival_airport.code %></td>
+      <td><%= f.start_datetime.strftime('%b %d, %Y %l:%M %p') %></td>
+      <td><%= f.duration_minutes %></td>
+      <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

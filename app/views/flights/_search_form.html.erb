@@ -1,0 +1,19 @@
+<%= form_with url: '/search', method: :get, local: true do %>
+
+<%= hidden_field_tag :search, "true" %>
+
+<%= select_tag(:departure_airport_id, options_for_select(@airport_options),
+  { prompt: "From:", class: 'form-control' }) %>
+
+<%= select_tag(:arrival_airport_id, options_for_select(@airport_options),
+  { prompt: "To:", class: 'form-control' }) %>
+
+<%= select_tag(:start_datetime, options_for_select(@date_options),
+  { prompt: "Date:", class: 'form-control' }) %>
+
+<%= select_tag(:passengers, options_for_select(@passenger_options),
+  { prompt: "Passengers:", class: 'form-control' }) %>
+
+<%= submit_tag "Search" %>
+
+<% end %>

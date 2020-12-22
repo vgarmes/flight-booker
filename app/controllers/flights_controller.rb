@@ -7,6 +7,19 @@ class FlightsController < ApplicationController
     @flights = Flight.all
   end
 
+  def search
+    @airport_options = Airport.all.map{ |a| [ a.code, a.id ] }
+    @passenger_options = [[1],[2],[3],[4]]
+    @date_options = Flight.all.map{ |f| [f.start_datetime.strftime('%b %d, %Y'), f.start_datetime.to_date] }.uniq
+    if params[:search]
+      @flights = Flight.where(
+        departure_airport_id: params[:departure_airport_id],
+        arrival_airport_id: params[:arrival_airport_id],
+        start_datetime: params[:start_datetime].to_date.all_day
+      )
+    end
+  end
+
   # GET /flights/1
   # GET /flights/1.json
   def show
